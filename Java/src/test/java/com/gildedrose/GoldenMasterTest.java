@@ -43,10 +43,10 @@ public class GoldenMasterTest {
 
         app.updateQuality();
 
-        assertEquals(expectedItems.length, items.length);
+        assertEquals(expectedItems.length, app.items.length);
 
-        for(int i = 0; i < items.length; i++){
-            assertEquals(expectedItems[i].toString(), items[i].toString());
+        for(int i = 0; i < app.items.length; i++){
+            assertEquals(expectedItems[i].toString(), app.items[i].toString());
         }
     }
 
@@ -67,10 +67,10 @@ public class GoldenMasterTest {
         app.updateQuality();
         app.updateQuality();
 
-        assertEquals(expectedItems.length, items.length);
+        assertEquals(expectedItems.length, app.items.length);
 
-        for(int i = 0; i < items.length; i++){
-            assertEquals(expectedItems[i].toString(), items[i].toString());
+        for(int i = 0; i < app.items.length; i++){
+            assertEquals(expectedItems[i].toString(), app.items[i].toString());
         }
     }
 
@@ -95,10 +95,10 @@ public class GoldenMasterTest {
         app.updateQuality();
         app.updateQuality();
 
-        assertEquals(expectedItems.length, items.length);
+        assertEquals(expectedItems.length, app.items.length);
 
-        for(int i = 0; i < items.length; i++){
-            assertEquals(expectedItems[i].toString(), items[i].toString());
+        for(int i = 0; i < app.items.length; i++){
+            assertEquals(expectedItems[i].toString(), app.items[i].toString());
         }
     }
 

@@ -13,4 +13,23 @@ class GildedRoseTest {
         app.updateQuality();
         assertEquals("foo", app.items[0].name);
     }
+
+    @Test
+    void
+    should_not_decrease_sell_in_of_sulfuras_items(){
+        Item[] items = new Item[]{new Item("Sulfuras, Hand of Ragnaros", 10, 10)};
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(10, app.items[0].sellIn);
+    }
+
+    @Test
+    void
+    should_not_decrease_quality_of_sulfuras_items(){
+        Item[] items = new Item[]{new Item("Sulfuras, Hand of Ragnaros", 10, 10)};
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(10, app.items[0].quality);
+    }
+
 }
