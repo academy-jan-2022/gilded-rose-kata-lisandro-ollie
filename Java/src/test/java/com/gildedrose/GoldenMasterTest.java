@@ -14,12 +14,17 @@ public class GoldenMasterTest {
         items = new Item[] {
             new Item("+5 Dexterity Vest", 10, 20), //
             new Item("Aged Brie", 2, 0), //
+            new Item("Aged Brie", -1, 0), //
             new Item("Elixir of the Mongoose", 5, 7), //
+            new Item("Super random item", -1, 7), //
             new Item("Sulfuras, Hand of Ragnaros", 0, 80), //
             new Item("Sulfuras, Hand of Ragnaros", -1, 80),
             new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20),
             new Item("Backstage passes to a TAFKAL80ETC concert", 10, 49),
             new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49),
+            new Item("Backstage passes to a TAFKAL80ETC concert", 4, 48),
+            new Item("Backstage passes to a TAFKAL80ETC concert", 4, 45),
+            new Item("Backstage passes to a TAFKAL80ETC concert", 0, 48),
             // this conjured item does not work properly yet
             new Item("Conjured Mana Cake", 3, 6) };
 
@@ -32,67 +37,20 @@ public class GoldenMasterTest {
         Item[] expectedItems = new Item[] {
             new Item("+5 Dexterity Vest", 9, 19), //
             new Item("Aged Brie", 1, 1), //
+            new Item("Aged Brie", -2, 2), //
             new Item("Elixir of the Mongoose", 4, 6), //
+            new Item("Super random item", -2, 5), //
             new Item("Sulfuras, Hand of Ragnaros", 0, 80), //
             new Item("Sulfuras, Hand of Ragnaros", -1, 80),
             new Item("Backstage passes to a TAFKAL80ETC concert", 14, 21),
             new Item("Backstage passes to a TAFKAL80ETC concert", 9, 50),
             new Item("Backstage passes to a TAFKAL80ETC concert", 4, 50),
+            new Item("Backstage passes to a TAFKAL80ETC concert", 3, 50),
+            new Item("Backstage passes to a TAFKAL80ETC concert", 3, 48),
+            new Item("Backstage passes to a TAFKAL80ETC concert", -1, 0),
             // this conjured item does not work properly yet
             new Item("Conjured Mana Cake", 2, 5) };
 
-        app.updateQuality();
-
-        assertEquals(expectedItems.length, app.items.length);
-
-        for(int i = 0; i < app.items.length; i++){
-            assertEquals(expectedItems[i].toString(), app.items[i].toString());
-        }
-    }
-
-    @Test void
-    should_update_items_quality_day_2(){
-        Item[] expectedItems = new Item[] {
-            new Item("+5 Dexterity Vest", 8, 18), //
-            new Item("Aged Brie", 0, 2), //
-            new Item("Elixir of the Mongoose", 3, 5), //
-            new Item("Sulfuras, Hand of Ragnaros", 0, 80), //
-            new Item("Sulfuras, Hand of Ragnaros", -1, 80),
-            new Item("Backstage passes to a TAFKAL80ETC concert", 13, 22),
-            new Item("Backstage passes to a TAFKAL80ETC concert", 8, 50),
-            new Item("Backstage passes to a TAFKAL80ETC concert", 3, 50),
-            // this conjured item does not work properly yet
-            new Item("Conjured Mana Cake", 1, 4) };
-
-        app.updateQuality();
-        app.updateQuality();
-
-        assertEquals(expectedItems.length, app.items.length);
-
-        for(int i = 0; i < app.items.length; i++){
-            assertEquals(expectedItems[i].toString(), app.items[i].toString());
-        }
-    }
-
-    @Test void
-    should_update_items_quality_day_6(){
-        Item[] expectedItems = new Item[] {
-            new Item("+5 Dexterity Vest", 4, 14), //
-            new Item("Aged Brie", -4, 10), //
-            new Item("Elixir of the Mongoose", -1, 0), //
-            new Item("Sulfuras, Hand of Ragnaros", 0, 80), //
-            new Item("Sulfuras, Hand of Ragnaros", -1, 80),
-            new Item("Backstage passes to a TAFKAL80ETC concert", 9, 27),
-            new Item("Backstage passes to a TAFKAL80ETC concert", 4, 50),
-            new Item("Backstage passes to a TAFKAL80ETC concert", -1, 0),
-            // this conjured item does not work properly yet
-            new Item("Conjured Mana Cake", -3, 0) };
-
-        app.updateQuality();
-        app.updateQuality();
-        app.updateQuality();
-        app.updateQuality();
-        app.updateQuality();
         app.updateQuality();
 
         assertEquals(expectedItems.length, app.items.length);
