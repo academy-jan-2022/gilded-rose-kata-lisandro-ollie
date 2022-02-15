@@ -28,9 +28,6 @@ class GildedRose {
                 continue;
             }
 
-
-            increaseQualityFor(item);
-
             if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
 
                 if (item.sellIn < 11) {
@@ -42,6 +39,7 @@ class GildedRose {
                 }
             }
 
+            increaseQualityFor(item);
             decreaseSellInFor(item);
 
 
