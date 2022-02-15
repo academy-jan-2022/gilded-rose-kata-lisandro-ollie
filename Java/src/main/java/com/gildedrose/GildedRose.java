@@ -32,27 +32,29 @@ class GildedRose {
             }
 
             increaseQualityFor(item);
+            decreaseSellInFor(item);
 
             if (isBackstagePass(item)) {
 
-                if (item.sellIn < 11) {
+                if (item.sellIn <= 10) {
                     increaseQualityFor(item);
                 }
 
-                if (item.sellIn < 6) {
+                if (item.sellIn <= 5) {
                     increaseQualityFor(item);
                 }
 
-                if (isExpired(item)) {
-                    decreaseQualityFor(item, item.quality);
-                }
+
             }
 
-            if (item.name.equals("Aged Brie") && isExpired(item))
+            if (isExpired(item)) {
+                if (isBackstagePass(item)){
+                    decreaseQualityFor(item, item.quality);
+                    continue;
+                }
+
                 increaseQualityFor(item);
-
-
-            decreaseSellInFor(item);
+            }
         }
     }
 
