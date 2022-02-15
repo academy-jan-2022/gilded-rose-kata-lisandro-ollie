@@ -21,11 +21,17 @@ class GildedRose {
 
     public void updateQuality() {
         for (Item item : items) {
-            if (Objects.equals(item.name, "Aged Brie"))
-                increaseQualityFor(item);
+
+            if (!specialItems.contains(item.name)){
+                decreaseQualityFor(item);
+                decreaseSellInFor(item);
+                continue;
+            }
+
+
+            increaseQualityFor(item);
 
             if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                increaseQualityFor(item);
 
                 if (item.sellIn < 11) {
                     increaseQualityFor(item);
@@ -36,9 +42,8 @@ class GildedRose {
                 }
             }
 
-
-            decreaseQualityFor(item);
             decreaseSellInFor(item);
+
 
             if (isExpired(item)) {
 
@@ -49,7 +54,6 @@ class GildedRose {
                 if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
                     item.quality = minQuality;
                 }
-
             }
         }
     }
@@ -65,7 +69,7 @@ class GildedRose {
     }
 
     private void decreaseQualityFor(Item item) {
-        if (item.quality > 0 && !specialItems.contains(item.name)) {
+        if (item.quality > minQuality && !specialItems.contains(item.name)) {
             int decreaseBy = isExpired(item) ? 2 : 1;
             item.quality = item.quality - decreaseBy;
         }
