@@ -9,7 +9,6 @@ class GildedRose {
     Item[] items;
     List<String> specialItems = Arrays.asList(
             "Aged Brie",
-            "Sulfuras, Hand of Ragnaros",
             "Backstage passes to a TAFKAL80ETC concert"
     );
     int maxQuality = 50;
@@ -21,14 +20,19 @@ class GildedRose {
 
     public void updateQuality() {
         for (Item item : items) {
+            if(isLegendary(item))
+                continue;
 
-            if (!specialItems.contains(item.name)){
+            if (isRegularItem(item)){
                 decreaseQualityFor(item);
                 decreaseSellInFor(item);
                 continue;
             }
 
-            if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+
+            increaseQualityFor(item);
+
+            if (isBackstagePass(item)) {
 
                 if (item.sellIn < 11) {
                     increaseQualityFor(item);
@@ -37,10 +41,12 @@ class GildedRose {
                 if (item.sellIn < 6) {
                     increaseQualityFor(item);
                 }
+
+                if (isExpired(item)) {
+                    item.quality = minQuality;
+                }
             }
 
-            increaseQualityFor(item);
-            decreaseSellInFor(item);
 
 
             if (isExpired(item)) {
@@ -48,16 +54,22 @@ class GildedRose {
                 if (item.name.equals("Aged Brie")) {
                     increaseQualityFor(item);
                 }
-
-                if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                    item.quality = minQuality;
-                }
             }
+
+            decreaseSellInFor(item);
         }
     }
 
+    private boolean isRegularItem(Item item) {
+        return !specialItems.contains(item.name);
+    }
+
+    private boolean isBackstagePass(Item item) {
+        return item.name.equals("Backstage passes to a TAFKAL80ETC concert");
+    }
+
     private boolean isExpired(Item item) {
-        return item.sellIn < 0;
+        return item.sellIn <= 0;
     }
 
     private void increaseQualityFor(Item item) {
@@ -74,7 +86,10 @@ class GildedRose {
     }
 
     private void decreaseSellInFor(Item item) {
-        if (!item.name.equals("Sulfuras, Hand of Ragnaros"))
             item.sellIn = item.sellIn - 1;
+    }
+
+    private boolean isLegendary(Item item) {
+        return item.name.equals("Sulfuras, Hand of Ragnaros");
     }
 }
