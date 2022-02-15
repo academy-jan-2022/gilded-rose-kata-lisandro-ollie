@@ -25,11 +25,11 @@ class GildedRose {
                 continue;
 
             if (isRegularItem(item)){
-                decreaseQualityFor(item);
+                int decreaseBy = isExpired(item) ? 2 : 1;
+                decreaseQualityFor(item, decreaseBy);
                 decreaseSellInFor(item);
                 continue;
             }
-
 
             increaseQualityFor(item);
 
@@ -44,7 +44,7 @@ class GildedRose {
                 }
 
                 if (isExpired(item)) {
-                    item.quality = minQuality;
+                    decreaseQualityFor(item, item.quality);
                 }
             }
 
@@ -74,9 +74,8 @@ class GildedRose {
         }
     }
 
-    private void decreaseQualityFor(Item item) {
+    private void decreaseQualityFor(Item item, int decreaseBy) {
         if (item.quality > minQuality) {
-            int decreaseBy = isExpired(item) ? 2 : 1;
             item.quality = item.quality - decreaseBy;
         }
     }
