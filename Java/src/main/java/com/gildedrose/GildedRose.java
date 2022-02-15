@@ -75,7 +75,7 @@ class GildedRose {
     }
 
     private void decreaseQualityFor(Item item) {
-        if (item.quality > minQuality && !specialItems.contains(item.name)) {
+        if (item.quality > minQuality) {
             int decreaseBy = isExpired(item) ? 2 : 1;
             item.quality = item.quality - decreaseBy;
         }
