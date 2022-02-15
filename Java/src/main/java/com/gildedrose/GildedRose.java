@@ -20,6 +20,7 @@ class GildedRose {
 
     public void updateQuality() {
         for (Item item : items) {
+
             if(isLegendary(item))
                 continue;
 
@@ -47,14 +48,9 @@ class GildedRose {
                 }
             }
 
+            if (item.name.equals("Aged Brie") && isExpired(item))
+                increaseQualityFor(item);
 
-
-            if (isExpired(item)) {
-
-                if (item.name.equals("Aged Brie")) {
-                    increaseQualityFor(item);
-                }
-            }
 
             decreaseSellInFor(item);
         }
@@ -92,4 +88,5 @@ class GildedRose {
     private boolean isLegendary(Item item) {
         return item.name.equals("Sulfuras, Hand of Ragnaros");
     }
+
 }
