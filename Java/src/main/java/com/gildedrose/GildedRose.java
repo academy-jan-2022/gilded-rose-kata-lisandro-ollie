@@ -11,12 +11,11 @@ class GildedRose {
 
     public void updateQuality() {
         for (Item item : items) {
-            if (Objects.equals(item.name, "Aged Brie")
-                || Objects.equals(item.name, "Backstage passes to a TAFKAL80ETC concert")) {
-
+            if (Objects.equals(item.name, "Aged Brie"))
                 increaseQualityFor(item);
-
                 if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+                    increaseQualityFor(item);
+
                     if (item.sellIn < 11) {
                         increaseQualityFor(item);
                     }
@@ -25,7 +24,7 @@ class GildedRose {
                         increaseQualityFor(item);
                     }
                 }
-            }
+
 
             decreaseQualityFor(item);
             decreaseSellInFor(item);
