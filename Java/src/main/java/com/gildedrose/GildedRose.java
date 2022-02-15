@@ -46,9 +46,8 @@ class GildedRose {
 
                 if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
                     item.quality = 0;
-                } else {
-                    decreaseQualityFor(item);
                 }
+
             }
         }
     }
@@ -65,7 +64,8 @@ class GildedRose {
 
     private void decreaseQualityFor(Item item) {
         if (item.quality > 0 && !specialItems.contains(item.name)) {
-            item.quality = item.quality - 1;
+            int decreaseBy = isExpired(item) ? 2 : 1;
+            item.quality = item.quality - decreaseBy;
         }
     }
 
