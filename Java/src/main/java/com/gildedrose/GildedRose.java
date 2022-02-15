@@ -12,6 +12,8 @@ class GildedRose {
             "Sulfuras, Hand of Ragnaros",
             "Backstage passes to a TAFKAL80ETC concert"
     );
+    int maxQuality = 50;
+    int minQuality = 0;
 
     public GildedRose(Item[] items) {
         this.items = items;
@@ -45,7 +47,7 @@ class GildedRose {
                 }
 
                 if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                    item.quality = 0;
+                    item.quality = minQuality;
                 }
 
             }
@@ -57,7 +59,7 @@ class GildedRose {
     }
 
     private void increaseQualityFor(Item item) {
-        if (item.quality < 50) {
+        if (item.quality < maxQuality) {
             item.quality = item.quality + 1;
         }
     }

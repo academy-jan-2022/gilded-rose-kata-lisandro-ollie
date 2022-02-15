@@ -25,8 +25,10 @@ public class GoldenMasterTest {
             new Item("Backstage passes to a TAFKAL80ETC concert", 4, 48),
             new Item("Backstage passes to a TAFKAL80ETC concert", 4, 45),
             new Item("Backstage passes to a TAFKAL80ETC concert", 0, 48),
+            new Item("Super random item", -2, 0),
             // this conjured item does not work properly yet
             new Item("Conjured Mana Cake", 3, 6) };
+
 
         app = new GildedRose(items);
 
@@ -48,6 +50,7 @@ public class GoldenMasterTest {
             new Item("Backstage passes to a TAFKAL80ETC concert", 3, 50),
             new Item("Backstage passes to a TAFKAL80ETC concert", 3, 48),
             new Item("Backstage passes to a TAFKAL80ETC concert", -1, 0),
+            new Item("Super random item", -3, 0),
             // this conjured item does not work properly yet
             new Item("Conjured Mana Cake", 2, 5) };
 
