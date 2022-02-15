@@ -1,9 +1,17 @@
 package com.gildedrose;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 class GildedRose {
     Item[] items;
+    List<String> specialItems = Arrays.asList(
+            "Aged Brie",
+            "Sulfuras, Hand of Ragnaros",
+            "Backstage passes to a TAFKAL80ETC concert"
+    );
 
     public GildedRose(Item[] items) {
         this.items = items;
@@ -13,17 +21,18 @@ class GildedRose {
         for (Item item : items) {
             if (Objects.equals(item.name, "Aged Brie"))
                 increaseQualityFor(item);
-                if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+
+            if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+                increaseQualityFor(item);
+
+                if (item.sellIn < 11) {
                     increaseQualityFor(item);
-
-                    if (item.sellIn < 11) {
-                        increaseQualityFor(item);
-                    }
-
-                    if (item.sellIn < 6) {
-                        increaseQualityFor(item);
-                    }
                 }
+
+                if (item.sellIn < 6) {
+                    increaseQualityFor(item);
+                }
+            }
 
 
             decreaseQualityFor(item);
@@ -55,10 +64,7 @@ class GildedRose {
     }
 
     private void decreaseQualityFor(Item item) {
-        if (item.quality > 0
-            && !Objects.equals(item.name, "Sulfuras, Hand of Ragnaros")
-            && !Objects.equals(item.name, "Aged Brie")
-            && !Objects.equals(item.name, "Backstage passes to a TAFKAL80ETC concert")) {
+        if (item.quality > 0 && !specialItems.contains(item.name)) {
             item.quality = item.quality - 1;
         }
     }
