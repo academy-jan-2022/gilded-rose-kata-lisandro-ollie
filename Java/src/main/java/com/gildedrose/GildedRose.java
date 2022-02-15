@@ -31,10 +31,17 @@ class GildedRose {
                 continue;
             }
 
-            increaseQualityFor(item);
             decreaseSellInFor(item);
 
+            if (isAgedBrie(item)){
+                increaseQualityFor(item);
+
+                if (isExpired(item))
+                    increaseQualityFor(item);
+            }
+
             if (isBackstagePass(item)) {
+                increaseQualityFor(item);
 
                 if (item.sellIn <= 10) {
                     increaseQualityFor(item);
@@ -44,16 +51,9 @@ class GildedRose {
                     increaseQualityFor(item);
                 }
 
-
-            }
-
-            if (isExpired(item)) {
-                if (isBackstagePass(item)){
+                if (isExpired(item))
                     decreaseQualityFor(item, item.quality);
-                    continue;
-                }
 
-                increaseQualityFor(item);
             }
         }
     }
@@ -64,6 +64,10 @@ class GildedRose {
 
     private boolean isBackstagePass(Item item) {
         return item.name.equals("Backstage passes to a TAFKAL80ETC concert");
+    }
+
+    private boolean isAgedBrie(Item item) {
+        return item.name.equals("Aged Brie");
     }
 
     private boolean isExpired(Item item) {
