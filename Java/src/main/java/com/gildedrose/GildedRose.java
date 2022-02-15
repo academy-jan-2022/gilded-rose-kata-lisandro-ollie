@@ -34,22 +34,22 @@ class GildedRose {
             decreaseSellInFor(item);
 
             if (isAgedBrie(item)){
-                increaseQualityFor(item);
-
-                if (isExpired(item))
-                    increaseQualityFor(item);
+                int increaseBy = isExpired(item) ? 2 : 1;
+                increaseQualityFor(item, increaseBy);
             }
 
             if (isBackstagePass(item)) {
-                increaseQualityFor(item);
+                int increaseBy = 1;
 
                 if (item.sellIn <= 10) {
-                    increaseQualityFor(item);
+                    increaseBy++;
                 }
 
                 if (item.sellIn <= 5) {
-                    increaseQualityFor(item);
+                    increaseBy++;
                 }
+
+                increaseQualityFor(item, increaseBy);
 
                 if (isExpired(item))
                     decreaseQualityFor(item, item.quality);
@@ -74,10 +74,9 @@ class GildedRose {
         return item.sellIn <= 0;
     }
 
-    private void increaseQualityFor(Item item) {
-        if (item.quality < maxQuality) {
-            item.quality = item.quality + 1;
-        }
+    private void increaseQualityFor(Item item, int increaseBy) {
+        int total = item.quality + increaseBy;
+        item.quality = total > maxQuality ? maxQuality : total;
     }
 
     private void decreaseQualityFor(Item item, int decreaseBy) {
